@@ -49,7 +49,7 @@ line_down()
 game = True
 while game:
 
-    time.sleep(.1)
+    time.sleep(.01)
     screen.update()
     player_scoreboard.scores()
     opponent_scoreboard.scores()
@@ -57,15 +57,16 @@ while game:
 
     if moving_ball.ycor() > 240 or moving_ball.ycor() < -240:
         moving_ball.bounce_down()
-    elif moving_ball.xcor() > 360 and moving_ball.distance(opponent_paddle) < 40 or moving_ball.xcor() < -360 and moving_ball.distance(player_paddle) < 40:
+    elif moving_ball.xcor() > 360 and moving_ball.distance(opponent_paddle) < 50 or moving_ball.xcor() < -360 and moving_ball.distance(player_paddle) < 50:
         moving_ball.bounce_wall()
-    elif moving_ball.xcor() > 370:
-        moving_ball.teleport(0,0)
+
+    elif moving_ball.xcor() > 390:
+        moving_ball.goto(0,0)
         time.sleep(1)
         player_scoreboard.score += 1
         player_scoreboard.scores()
-    elif moving_ball.xcor() < -370:
-        moving_ball.teleport(0,0)
+    elif moving_ball.xcor() < -390:
+        moving_ball.goto(0,0)
         time.sleep(1)
         opponent_scoreboard.score += 1
         opponent_scoreboard.scores()
